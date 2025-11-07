@@ -27,6 +27,14 @@ func NewPrice(baseCurrency, quoteCurrency Currency, denominator, numerator *big.
 	}
 }
 
+func (p *Price) GetBaseCurrency() Currency {
+	return p.baseCurrency
+}
+
+func (p *Price) GetQuoteCurrency() Currency {
+	return p.quoteCurrency
+}
+
 func (p *Price) Invert() *Price {
 	return NewPrice(p.quoteCurrency, p.baseCurrency, p.fraction.denominator, p.fraction.numerator)
 }

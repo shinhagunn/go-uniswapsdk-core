@@ -33,6 +33,10 @@ func NewToken(chainID types.ChainID, address common.Address, decimals uint, symb
 	return token
 }
 
+func (t *Token) GetAddress() common.Address {
+	return t.address
+}
+
 func (t *Token) IsEqual(other Currency) bool {
 	if other != nil {
 		v, isToken := other.(*Token)

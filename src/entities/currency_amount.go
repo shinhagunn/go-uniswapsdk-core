@@ -28,6 +28,14 @@ func newCurrencyAmount(currency Currency, numerator, denominator *big.Int) *Curr
 	}
 }
 
+func (ca *CurrencyAmount) GetCurrency() Currency {
+	return ca.currency
+}
+
+func (ca *CurrencyAmount) GetDecimalScale() *big.Int {
+	return ca.decimalScale
+}
+
 func FromRawAmount(currency Currency, rawAmount *big.Int) *CurrencyAmount {
 	return newCurrencyAmount(currency, rawAmount, big.NewInt(1))
 }
