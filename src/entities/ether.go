@@ -35,6 +35,6 @@ func (e *Ether) IsEqual(other Currency) bool {
 	return false
 }
 
-func (e *Ether) Wrapped() *token {
+func (e *Ether) Wrapped() *Token {
 	return WETH9[e.GetChainID()]
 }

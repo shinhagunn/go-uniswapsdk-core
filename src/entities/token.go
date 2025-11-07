@@ -7,17 +7,17 @@ import (
 	"github.com/shinhagunn/go-uniswapsdk-core/src/types"
 )
 
-type token struct {
+type Token struct {
 	*baseCurrency
 	address common.Address
 }
 
-func NewToken(chainID types.ChainID, address common.Address, decimals uint, symbol, name string) *token {
+func NewToken(chainID types.ChainID, address common.Address, decimals uint, symbol, name string) *Token {
 	if decimals >= 255 {
 		panic("decimals must be less than 255")
 	}
 
-	token := &token{
+	token := &Token{
 		baseCurrency: &baseCurrency{
 			isNative: false,
 			isToken:  true,
@@ -33,9 +33,9 @@ func NewToken(chainID types.ChainID, address common.Address, decimals uint, symb
 	return token
 }
 
-func (t *token) IsEqual(other Currency) bool {
+func (t *Token) IsEqual(other Currency) bool {
 	if other != nil {
-		v, isToken := other.(*token)
+		v, isToken := other.(*Token)
 		if isToken {
 			return v.isToken && t.chainID == v.chainID && t.address.Cmp(v.address) == 0
 		}
@@ -44,7 +44,7 @@ func (t *token) IsEqual(other Currency) bool {
 	return false
 }
 
-func (t *token) SortsBefore(other token) (bool, error) {
+func (t *Token) SortsBefore(other Token) (bool, error) {
 	if t.chainID != other.chainID {
 		return false, errors.New("token chain ID does not match")
 	}
@@ -56,6 +56,6 @@ func (t *token) SortsBefore(other token) (bool, error) {
 	return t.address.Cmp(other.address) < 0, nil
 }
 
-func (t *token) Wrapped() *token {
+func (t *Token) Wrapped() *Token {
 	return t
 }

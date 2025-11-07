@@ -2,11 +2,11 @@ package entities
 
 type nativeCurrency struct {
 	*baseCurrency
-	wrapped *token
+	wrapped *Token
 }
 
 // Represents the native currency of the chain on which it resides, e.g.
-func NewNativeCurrency(wrapped *token, symbol, name string) Currency {
+func NewNativeCurrency(wrapped *Token, symbol, name string) Currency {
 	native := &nativeCurrency{
 		baseCurrency: &baseCurrency{
 			isNative: true,
@@ -34,6 +34,6 @@ func (n *nativeCurrency) IsEqual(other Currency) bool {
 	return false
 }
 
-func (n *nativeCurrency) Wrapped() *token {
+func (n *nativeCurrency) Wrapped() *Token {
 	return n.wrapped
 }

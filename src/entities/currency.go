@@ -15,7 +15,7 @@ type Currency interface {
 	GetSymbol() string
 	GetName() string
 	IsEqual(other Currency) bool
-	Wrapped() *token
+	Wrapped() *Token
 }
 
 // BaseCurrency is an abstract struct, do not use it directly
@@ -74,6 +74,6 @@ func (c *baseCurrency) IsEqual(other Currency) bool {
 	panic("Equal method has to be overridden")
 }
 
-func (c *baseCurrency) Wrapped() *token {
+func (c *baseCurrency) Wrapped() *Token {
 	panic("Wrapped method has to be overridden")
 }
